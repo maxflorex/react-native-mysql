@@ -4,4 +4,17 @@ GET {{api}}
 
 ###
 
+GET {{api}}/5
+
+###
+GET {{api}}/count
+
+###
+
 POST {{api}}
+Content-Type: application/json
+
+{
+    "title" : "6saath Task",
+    "description": "Some 5 task"
+}
