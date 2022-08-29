@@ -1,23 +1,30 @@
 import { connect } from "../database"
 
+// GET ALL TASKS
 export const getTasks = async (req, res) => {
     const connection = await connect()
     const [rows] = await connection.query('SELECT * FROM tasks')
     res.json(rows)
 }
 
+
+// GET SINGLE TASK
 export const getTask = async (req, res) => {
     const connection = await connect();
     const [rows] = await connection.query('SELECT * FROM tasks WHERE id =?', [req.params.id])
     res.send(rows[0])
 }
 
+
+// GET COUNT
 export const getTaskCount = async (req, res) => {
     const connection = await connect()
     const [rows] = await connection.query("SELECT COUNT(*) FROM tasks")
     res.json(rows[0]["COUNT(*)"])
 }
 
+
+// ADD NEW TASK
 export const saveTask = async (req, res) => {
     const connection = await connect()
     const [results] = await connection.query("INSERT INTO tasks(title, description) VALUES (?,?)", [
@@ -30,10 +37,19 @@ export const saveTask = async (req, res) => {
     })
 }
 
-export const deleteTask = (req, res) => {
-    res.send('Hello, world')
+
+// DELETE TASK
+export const deleteTask = async (req, res) => {
+    const connection = await connect()
+    const result = await connection.query("DELETE FROM tasks WHERE id =?", [
+        req.params.id,
+    ]);
+    console.log(result);
+    res.json({})
 }
 
-export const updateTask = (req, res) => {
+
+// UPDATE TASK
+export const updateTask = async (req, res) => {
     res.send('Hello, world')
 }
