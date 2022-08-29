@@ -4,7 +4,7 @@ GET {{api}}
 
 ###
 
-GET {{api}}/5
+GET {{api}}/3
 
 ###
 GET {{api}}/count
@@ -21,4 +21,15 @@ Content-Type: application/json
 
 ###
 
-DELETE {{api}}/4
+DELETE  {{api}}/2
+
+###
+
+PUT {{api}}/4
+Content-Type: application/json
+
+{
+   "description": "This was also updated" 
+}
+
+

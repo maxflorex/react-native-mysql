@@ -41,15 +41,19 @@ export const saveTask = async (req, res) => {
 // DELETE TASK
 export const deleteTask = async (req, res) => {
     const connection = await connect()
-    const result = await connection.query("DELETE FROM tasks WHERE id =?", [
+    await connection.query("DELETE FROM tasks WHERE id =?", [
         req.params.id,
     ]);
-    console.log(result);
-    res.json({})
+    res.sendStatus(204)
 }
 
 
 // UPDATE TASK
 export const updateTask = async (req, res) => {
-    res.send('Hello, world')
+    const connection = await connect()
+    await connection.query('UPDATE tasks SET ? WHERE id = ?', [
+        req.body,
+        req.params.id
+    ])
+    res.sendStatus(204)
 }
